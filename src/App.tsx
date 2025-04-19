@@ -1,10 +1,12 @@
-import './App.css'
+import "./App.css";
 import { Link } from "react-router-dom";
-
+// import React from "react";
+import ShopHeader from "./ShopHeader";
 
 const App = () => {
   return (
     <div>
+      <ShopHeader />
       <h1>Hello from the main page of the app!</h1>
       <p>Here are some examples of links to other pages</p>
       <nav>
@@ -27,7 +29,6 @@ const App = () => {
           <li>
             <Link to="donkeykong">DonkeyKong</Link>
           </li>
-
         </ul>
       </nav>
     </div>

@@ -10,7 +10,7 @@ const Profile = () => {
   const { name } = useParams();
 
   return (
-    <div>
+    <div className="bg-blue-200 p-5 font-black text-lg text-teal-700 rounded-2xl">
       <h1>Hello from profile page!</h1>
       <p>So, how are you?</p>
       <hr />
