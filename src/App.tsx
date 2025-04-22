@@ -35,7 +35,9 @@ const Layout = () => {
         ) : error ? (
           <h1>Error: {error.message}</h1>
         ) : (
-          <Outlet context={{ data, cart, updateCart }} />
+          <div className="absolute top-30 left-50 right-50 flex flex-col items-center justify-center">
+            <Outlet context={{ data, cart, updateCart }} />
+          </div>
         )}
       </div>
     </div>
