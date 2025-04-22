@@ -1,21 +1,29 @@
-import React from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useSearchParams } from "react-router-dom";
 import ProductPane from "./ProductPane";
 import { Product } from "./ProductPane";
 
 const Products = () => {
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const [[minPrice, maxPrice], setPriceRange] = React.useState([0, 10000]);
+  const [searchParams, setSearchParams] = useSearchParams();
   const { data, updateCart } = useOutletContext<{
     data: Product[];
     updateCart: (product: Product) => void;
   }>();
 
   const fitsSearchParams = (str: string, price: number) => {
+    const minPrice = parseInt(searchParams.get("min") || "0");
+    const maxPrice = parseInt(searchParams.get("max") || "0");
+    console.log(
+      searchParams.get("min"),
+      searchParams.get("max"),
+      minPrice,
+      maxPrice
+    );
     return (
-      str.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      str
+        .toLowerCase()
+        .includes((searchParams.get("name") || "").toLowerCase()) &&
       price >= minPrice &&
-      price <= maxPrice
+      (!maxPrice || price <= maxPrice)
     );
   };
 
@@ -28,22 +36,37 @@ const Products = () => {
         <input
           type="text"
           placeholder="Search..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          value={searchParams.get("name") || ""}
+          onChange={(e) =>
+            setSearchParams({
+              ...Object.fromEntries(searchParams),
+              name: e.target.value,
+            })
+          }
           className="border-2 border-teal-500 p-2 rounded-lg"
         />
         <input
           type="number"
           placeholder="Min Price"
-          value={minPrice}
-          onChange={(e) => setPriceRange([parseInt(e.target.value), maxPrice])}
+          value={searchParams.get("min") || ""}
+          onChange={(e) =>
+            setSearchParams({
+              ...Object.fromEntries(searchParams),
+              min: e.target.value,
+            })
+          }
           className="border-2 border-teal-500 p-2 rounded-lg"
         />
         <input
           type="number"
           placeholder="Max Price"
-          value={maxPrice}
-          onChange={(e) => setPriceRange([minPrice, parseInt(e.target.value)])}
+          value={searchParams.get("max") || ""}
+          onChange={(e) =>
+            setSearchParams({
+              ...Object.fromEntries(searchParams),
+              max: e.target.value,
+            })
+          }
           className="border-2 border-teal-500 p-2 rounded-lg"
         />
         <button
