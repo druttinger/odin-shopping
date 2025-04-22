@@ -1,38 +1,27 @@
 import "./App.css";
-import { Link } from "react-router-dom";
 // import React from "react";
 import ShopHeader from "./ShopHeader";
+import useFetch from "react-fetch-hook";
+import { Outlet } from "react-router-dom";
 
-const App = () => {
+const Layout = () => {
+  const API_URL = "https://fakestoreapi.com/products";
+  const { isLoading, data, error } = useFetch(API_URL);
+
   return (
     <div>
       <ShopHeader />
-      <h1>Hello from the main page of the app!</h1>
-      <p>Here are some examples of links to other pages</p>
-      <nav>
-        <ul>
-          <li>
-            <Link to="profile">Profile page</Link>
-          </li>
-          <li>
-            <Link to="spinach">spinach</Link>
-          </li>
-          <li>
-            <Link to="popeye">Popeye</Link>
-          </li>
-          <li>
-            <Link to="mario">Mario</Link>
-          </li>
-          <li>
-            <Link to="olive">Olive Oil</Link>
-          </li>
-          <li>
-            <Link to="donkeykong">DonkeyKong</Link>
-          </li>
-        </ul>
-      </nav>
+      <div className="absolute top-30 left-50 right-50 flex flex-col items-center justify-center">
+        {isLoading ? (
+          <h1>Loading...</h1>
+        ) : error ? (
+          <h1>Error: {error.message}</h1>
+        ) : (
+          <Outlet context={data} />
+        )}
+      </div>
     </div>
   );
 };
 
-export default App;
+export default Layout;

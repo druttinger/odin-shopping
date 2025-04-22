@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function ShopHeader() {
   return (
-    <nav className="flex fixed top-0 left-0 right-0 justify-between items-center bg-teal-500 p-5">
+    <nav className="flex fixed top-0 left-0 right-0 justify-between items-center bg-teal-500 p-5 z-10">
       <h1 className="bg-blue-200 p-5 font-black text-3xl text-teal-700 rounded-2xl">
         Shop Header
       </h1>

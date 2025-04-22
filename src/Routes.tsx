@@ -1,18 +1,37 @@
 import Profile from "./Profile";
 import ErrorPage from "./ErrorPage";
-import App from "./App"
+import Layout from "./App";
+import Products from "./Products";
+import Home from "./Home";
 
-const routes = ([
+const routes = [
   {
-    path: "/",
-    element: <App />,
+    path: "/*",
+    element: <Layout />,
     errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "products",
+        element: <Products />,
+      },
+      {
+        path: "products/:id",
+        element: <Profile />,
+      },
+      {
+        path: "cart",
+        element: <h1>Cart</h1>,
+      },
+      {
+        path: "*",
+        element: <h1>Something is missing</h1>,
+      },
+    ],
   },
-  {
-    // path: "profile/:name",
-    path: ":name",
-    element: <Profile />,
-  },
-]);
+];
 
 export default routes;
