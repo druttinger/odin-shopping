@@ -1,11 +1,16 @@
 import React from "react";
 import { useOutletContext } from "react-router-dom";
 import ProductPane from "./ProductPane";
+import { Product } from "./ProductPane";
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [[minPrice, maxPrice], setPriceRange] = React.useState([0, 10000]);
-  const data = useOutletContext();
+  const { data, updateCart } = useOutletContext<{
+    data: Product[];
+    updateCart: (product: Product) => void;
+  }>();
+
   const fitsSearchParams = (str: string, price: number) => {
     return (
       str.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -49,12 +54,16 @@ const Products = () => {
         </button>
       </form>
       {Array.isArray(data)
-        ? data.map((product) =>
+        ? data.map((product: Product) =>
             fitsSearchParams(
-              product.title + product.description,
-              product.price
+              (product.title || "") + product.description,
+              product.price || 0
             ) ? (
-              <ProductPane product={product} key={product.id} />
+              <ProductPane
+                product={product}
+                key={product.id}
+                updateCart={updateCart}
+              />
             ) : null
           )
         : null}

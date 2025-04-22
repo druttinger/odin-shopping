@@ -1,14 +1,22 @@
 import { Link } from "react-router-dom";
+import { FaHandHoldingDollar } from "react-icons/fa6";
 
-interface Product {
+export interface Product {
   id: number;
-  title: string;
-  description: string;
-  price: number;
-  image: string;
+  title?: string;
+  description?: string;
+  price?: number;
+  image?: string;
+  quantity?: number;
 }
 
-function ProductPane({ product }: { product: Product }) {
+function ProductPane({
+  product,
+  updateCart,
+}: {
+  product: Product;
+  updateCart: (product: Product) => void;
+}) {
   return (
     <div key={product.id} className="bg-teal-500 p-5 m-5 rounded-2xl">
       <Link to={"/products/" + product.id} className="text-2xl font-bold">
@@ -21,6 +29,18 @@ function ProductPane({ product }: { product: Product }) {
         alt={product.title}
         className="w-32 h-32 object-cover"
       />
+      <div>Quantity: {product.quantity}</div>
+      {product.quantity && product.quantity > 0 ? (
+        <p className="text-lg">Quantity: {product.quantity}</p>
+      ) : (
+        <button
+          onClick={() => {
+            updateCart(product);
+          }}
+        >
+          <FaHandHoldingDollar size="4em" className="cursor-pointer" />
+        </button>
+      )}
     </div>
   );
 }
