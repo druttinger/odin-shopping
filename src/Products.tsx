@@ -12,12 +12,6 @@ const Products = () => {
   const fitsSearchParams = (str: string, price: number) => {
     const minPrice = parseInt(searchParams.get("min") || "0");
     const maxPrice = parseInt(searchParams.get("max") || "0");
-    console.log(
-      searchParams.get("min"),
-      searchParams.get("max"),
-      minPrice,
-      maxPrice
-    );
     return (
       str
         .toLowerCase()

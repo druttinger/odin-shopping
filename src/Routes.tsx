@@ -4,6 +4,7 @@ import Layout from "./App";
 import Products from "./Products";
 import Home from "./Home";
 import Cart from "./Cart";
+import Missing from "./Missing";
 
 const routes = [
   {
@@ -29,7 +30,7 @@ const routes = [
       },
       {
         path: "*",
-        element: <h1>Something is missing</h1>,
+        element: <Missing />,
       },
     ],
   },

@@ -1,4 +1,3 @@
-// import React from "react";
 import { Link } from "react-router-dom";
 import { FaShoppingCart, FaTrademark } from "react-icons/fa";
 import { Product } from "./ProductPane";

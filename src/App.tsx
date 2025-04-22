@@ -1,5 +1,4 @@
 import "./App.css";
-// import React from "react";
 import ShopHeader from "./ShopHeader";
 import useFetch from "react-fetch-hook";
 import { Outlet } from "react-router-dom";

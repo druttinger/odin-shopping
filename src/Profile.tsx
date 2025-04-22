@@ -14,7 +14,16 @@ const Profile = () => {
 
   // Handle the case where the product is not found
   if (!product) {
-    return <h1>Product not found</h1>;
+    return (
+      <>
+        <h1>Product not found</h1>
+        <Link to="..">
+          <span className="hover:text-red-600">
+            You can go back to the closest know page by clicking here, though!
+          </span>
+        </Link>
+      </>
+    );
   }
 
   return (
