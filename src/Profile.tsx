@@ -27,10 +27,12 @@ const Profile = () => {
   }
 
   return (
-    <div className="bg-blue-200 p-5 font-black text-lg text-teal-700 rounded-2xl">
-      <h1>Hello from profile page!</h1>
-      <ProductPane product={product} updateCart={updateCart} />
-      <Link to="/products">See other products</Link>
+    <div className="bg-blue-200 p-5 font-black text-lg text-black rounded-2xl">
+      <h1 className="text-teal-700">Look at this great product!</h1>
+      <ProductPane product={product} updateCart={updateCart} imgSize="large" />
+      <Link className="hover:text-white" to="/products">
+        See other products
+      </Link>
     </div>
   );
 };

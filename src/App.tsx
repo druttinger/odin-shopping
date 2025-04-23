@@ -10,16 +10,18 @@ const Layout = () => {
   const { isLoading, data, error } = useFetch(API_URL);
   const [cart, setCart] = useState<Product[]>([]);
 
-  function updateCart(product: Product): void {
+  function updateCart(product: Product, amount = 1): void {
     if (product.id === -1) setCart([]);
     else
       setCart((array: Product[]) => {
         if (array.find((item: Product) => item.id === product.id)) {
-          return array.map((item: Product) =>
-            item.id === product.id
-              ? { ...item, quantity: (item.quantity || 0) + 1 }
-              : item
-          );
+          return array
+            .map((item: Product) =>
+              item.id === product.id
+                ? { ...item, quantity: (item.quantity || 0) + amount }
+                : item
+            )
+            .filter((item: Product) => item.quantity !== 0);
         }
         return [...array, { ...product, quantity: 1 }];
       });

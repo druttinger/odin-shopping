@@ -26,7 +26,7 @@ const Products = () => {
       <h1 className="bg-blue-200 p-5 font-black text-3xl text-teal-700 rounded-2xl">
         Shop App
       </h1>
-      <form>
+      <form className="flex justify-center gap-2 mt-5 mb-5">
         <input
           type="text"
           placeholder="Search..."
@@ -65,7 +65,7 @@ const Products = () => {
         />
         <button
           type="submit"
-          className="bg-teal-500 text-white p-2 rounded-lg ml-2"
+          className="bg-teal-500 text-white hover:bg-white hover:border-2 hover:border-teal-500 hover:text-teal-500 p-2 rounded-lg ml-2"
         >
           Search
         </button>
